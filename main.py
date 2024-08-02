@@ -5,7 +5,7 @@ Challenge Discord n°16 du serveur Docstring
 Date: 2024-07-22
 """
 
-DEVISE_MEXICAINE = {
+DEVISE_MEXICAINE: dict[int, str] = {
     1000: "billete 1000 pesos",
     500: "billete 500 pesos",
     200: "billete 200 pesos",
