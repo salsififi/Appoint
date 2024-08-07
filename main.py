@@ -25,7 +25,7 @@ DEVISE_MEXICAINE: dict[int, str] = {
 def decomposition_monnaie(nombre: float) -> str:
     """
     Décompose le nombre passé en argument de façon à donner le nombre de pièces
-    et bhillets pour le constituer (n'affiche pas les pièces et billets dont on n'a pas besoin).
+    et billets pour le constituer (n'affiche pas les pièces et billets dont on n'a pas besoin).
     >>> print(decomposition_monnaie(145.80))
     billete 100 pesos: 1
     billete 20 pesos: 2
