@@ -54,11 +54,10 @@ def decomposition_monnaie(nombre: float) -> str:
         raise ValueError("l'argument doit être un nombre avec au maximum 2 chiffres après la virgule.")
 
     decomposition = []
-    reste = nombre
     for montant, designation in DEVISE_MEXICAINE.items():
-        if reste > montant:
-            decomposition.append(f"{designation}: {int(reste // montant)}")
-            reste = reste % montant
+        if nombre > montant:
+            decomposition.append(f"{designation}: {int(nombre // montant)}")
+            nombre = nombre % montant
     return "\n".join(decomposition)
 
 
