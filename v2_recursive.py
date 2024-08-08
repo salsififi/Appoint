@@ -19,7 +19,7 @@ DEVISE_MEXICAINE: dict[int, str] = {
 }
 
 
-def decomposition_monnaie(nombre: float, indice: int = 0) -> str:
+def decomposition_monnaie(nombre_a_decomposer: float) -> str:
     """
     Décompose le nombre passé en argument de façon à donner le nombre de pièces
     et billets pour le constituer (n'affiche pas les pièces et billets dont on n'a pas besoin).
@@ -47,21 +47,26 @@ def decomposition_monnaie(nombre: float, indice: int = 0) -> str:
     ...
     ValueError: l'argument doit être un nombre avec au maximum 2 chiffres après la virgule.
     """
-    if not isinstance(nombre, int | float) or (type(nombre) is float and len(str(nombre).split(".")[1]) > 2):
+    def decompisition_recursive(nombre: float, indice: int = 0) -> str:
+        """Décompose le nombre par une méthode récursive"""
+
+        if nombre == 0 or indice >= len(DEVISE_MEXICAINE):
+            return ""
+
+        montant = list(DEVISE_MEXICAINE)[indice]
+        designation = DEVISE_MEXICAINE[montant]
+        nb_devise = int(nombre // montant)
+        reste = round(nombre % montant, 2)
+
+        decomposition = f"{designation}: {nb_devise}{'\n' if decompisition_recursive(reste, indice + 1) else ''}" \
+            if nb_devise else ""
+
+        return f"{decomposition}{decompisition_recursive(reste, indice + 1)}"
+
+    if not isinstance(nombre_a_decomposer, int | float) or (type(nombre_a_decomposer) is float and len(str(nombre_a_decomposer).split(".")[1]) > 2):
         raise ValueError("l'argument doit être un nombre avec au maximum 2 chiffres après la virgule.")
 
-    if nombre == 0 or indice >= len(DEVISE_MEXICAINE):
-        return ""
-
-    montant = list(DEVISE_MEXICAINE)[indice]
-    designation = DEVISE_MEXICAINE[montant]
-    nb_devise = int(nombre // montant)
-    reste = round(nombre % montant, 2)
-
-    decomposition = f"{designation}: {nb_devise}{'\n' if decomposition_monnaie(reste, indice + 1) else ''}" \
-        if nb_devise else ""
-
-    return f"{decomposition}{decomposition_monnaie(reste, indice + 1)}"
+    return decompisition_recursive(nombre_a_decomposer)
 
 
 if __name__ == '__main__':

@@ -2,6 +2,8 @@
 Un script pour rendre la monnaie en pesos mexicains 😊, en réponse à un challenge niveau débutant proposé sur le serveur Discord "Docstring":
 (https://discord.com/channels/396825382009044994/1160339200063844356/1262331902518624256)
 
+Merci à @Djohner pour son code review!
+
 Consigne:
 
 Caramba ! En voyage solo au Mexique, vous avez perdu votre carte de crédit 😥. Il ne vous reste plus que billets et pièces locales. Le comble dans tout ça, les commerçants ne rendent pas la monnaie !
