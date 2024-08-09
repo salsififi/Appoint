@@ -58,15 +58,14 @@ def decomposition_monnaie(nombre_a_decomposer: float) -> str:
         nb_devise = int(nombre // montant)
         reste = round(nombre % montant, 2)
 
-        decomposition = f"{designation}: {nb_devise}{'\n' if decompisition_recursive(reste, indice + 1) else ''}" \
-            if nb_devise else ""
+        decomposition = f"{designation}: {nb_devise}{'\n'}" if nb_devise else ""
 
         return f"{decomposition}{decompisition_recursive(reste, indice + 1)}"
 
     if not isinstance(nombre_a_decomposer, int | float) or (type(nombre_a_decomposer) is float and len(str(nombre_a_decomposer).split(".")[1]) > 2):
         raise ValueError("l'argument doit être un nombre avec au maximum 2 chiffres après la virgule.")
 
-    return decompisition_recursive(nombre_a_decomposer)
+    return decompisition_recursive(nombre_a_decomposer)[:-1]
 
 
 if __name__ == '__main__':
